@@ -13,8 +13,9 @@ They will be installed automaticly using "install_requires" argument in setup.py
 ## Package instalation
 1) Clone this repository (https://github.com/Stychnevsky/RSS_reader/) for your computer
 
-2) Please install wheel if you dont have it:<br/>
-    pip install wheel
+2) Please install wheel and setuptools if you dont have it:<br/>
+    pip install wheel<br/>
+    pip install setuptools
 
 3) change folder to RSS_reader:<br/>
     cd RSS_reader
