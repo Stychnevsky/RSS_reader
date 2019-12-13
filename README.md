@@ -13,23 +13,26 @@ They will be installed automaticly using "install_requires" argument in setup.py
 ## Package instalation
 1) Clone this repository (https://github.com/Stychnevsky/RSS_reader/) for your computer
 
-2) change folder to RSS_reader:<br/>
+2) Please install wheel if you dont have it:<br/>
+    pip install wheel
+
+3) change folder to RSS_reader:<br/>
     cd RSS_reader
     
-3) setup package:<br/>
-    python setup.py sdist
+4) setup package:<br/>
+    python setup.py bdist_wheel
     
-4) dist package will be created:<br/>
+5) dist package will be created:<br/>
     cd dist
     
-5) install package using pip:<br/>
+6) install package using pip:<br/>
     pip install rss_reader-1.0.tar.gz
     
-6) Go to rss_reader folder:
+7) Go to rss_reader folder:
     cd ..
     cd RSS_reader
 
-7) Soo, now you install RSS_parser!
+8) Soo, now you can use RSS_parser!
     python3 rss_reader.py https://news.yahoo.com/rss/
 
 ## Program improvment
