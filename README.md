@@ -28,12 +28,12 @@ They will be installed automaticly using "install_requires" argument in setup.py
 6) install package using pip:<br/>
     pip install rss_reader-1.0.tar.gz
     
-7) Go to rss_reader folder:
-    cd ..
+7) Go to rss_reader folder:<br/>
+    cd ..<br/>
     cd RSS_reader
 
-8) Soo, now you can use RSS_parser!
-    python3 rss_reader.py https://news.yahoo.com/rss/
+8) Soo, now you can use RSS_parser!<br/>
+    python3 rss_reader.py https://news.yahoo.com/rss/<br/>
 
 ## Program improvment
 Now you see 1.0 program version. In is ready-to-work, but, to tell the truth, no so good as it can be.<br/>
