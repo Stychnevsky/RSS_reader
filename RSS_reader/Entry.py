@@ -4,6 +4,8 @@ import re
 
 
 class Entry:
+    """ Entry is object of peace of news. It consist of some metadata, description and links for images, wich was
+    founded in description. """
     def __init__(self, entry):
         self.title = html.unescape(entry.get('title', ''))
         self.link = entry.get('link', '')
@@ -14,14 +16,14 @@ class Entry:
         images = soup.find_all('img')
         self.img_links = [image.get('src', '') for image in images]
         self.img_titles = [image.get('alt', 'no title') for image in images]
-        print(self.img_titles)
-        img_tag = re.compile('<img.*?>')  # узнай что такое r' и зачем используют
+        img_tag = re.compile('<img.*?>')
         for number_of_img in range(len(images)):
             img_title = self.img_titles[number_of_img]
             desc = re.sub(img_tag, ' [image ' + str(number_of_img + 1) + ': ' + img_title + '] ', desc, count=1)
         self.description = BeautifulSoup(desc, 'html.parser').get_text()
 
     def output(self):
+        """ Function takes data from Entry and prepare it to printing. Output list is list of all Entry variables"""
         output_list = []
         if self.title:
             output_list.append(self.title)
@@ -37,6 +39,7 @@ class Entry:
         return output_list
 
     def output_to_json(self):
+        """ Function which take data from Entry and prepare it to put in Feed JSON."""
         data = {
             'title': self.title,
             'link': self.link,

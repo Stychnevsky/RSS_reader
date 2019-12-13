@@ -1,10 +1,8 @@
 import argparse
-
 import logging
 import json
 import time
 from Feed import Feed
-import sys
 
 
 def display_cache(url_to_show, date_to_show):
@@ -12,52 +10,32 @@ def display_cache(url_to_show, date_to_show):
         date_to_show = time.strptime(date_to_show, '%Y%m%d')
     except ValueError:
         logging.error('Date format Error! Please input data in yyyymmdd format!')
-    except Exception:
-        logging.info('??????') #тут еще может быть тайп еррор которая в итоге окажется внизу в ифе!!
-        raise #тут типо тайп еррор по идее. мл ждали стринг а нам дали дату или инт
+        raise ValueError('Wrong date type')
     with open('cache.txt') as cache_file:
         for line in cache_file:
             feed_json = json.loads(line)
             feed_access_date = time.strptime(feed_json['access_time'], '%Y-%m-%d %H:%M:%S.%f')
             url = feed_json['feed_url']
-            if feed_access_date < date_to_show and (not url_to_show or url == url_to_show):
-                print(json.dumps(feed_json, indent=2))
-
-"""logging.basicConfig(format='# %(levelname)-8s [%(asctime)s]  %(message)s',
-                    level=logging.INFO,
-                    filename=u'logs.log')
-"""
-"""
-#root = logging.getLogger()
-root=logging.FileHandler('logs.log')
-root.setLevel(logging.INFO)
-
-
-handler = logging.StreamHandler(sys.stdout)
-handler.setLevel(logging.INFO)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
-root.addHandler(handler)
-"""
-
+            if feed_access_date > date_to_show and (not url_to_show or url == url_to_show):
+                feed_json = json.dumps(feed_json, indent=2)
+                print(json.loads(feed_json))
 
 
 def main():
     args_parser = argparse.ArgumentParser(prog='Stychnevsky RSS Reader',
-                                          description='Help to read RSS',
-                                          epilog='end of help, thank for using')
+                                          description='Reader to parse RSS and output news',
+                                          epilog='RSS Reader 2019')
 
     args_parser.add_argument('url', nargs='?', action="store", help=' ')
-    # args_parser.add_argument('--version', action="version", version='1.0', help='Print version info')
-    args_parser.add_argument('--version', action="store_true", help='Print version info')
-    args_parser.add_argument('--json', action="store_true", help='Print result as JSON in stdout')
+    args_parser.add_argument('--version', action="store_true", help='Print version info and exit program')
+    args_parser.add_argument('--json', action="store_true", help='Print result as JSON')
     args_parser.add_argument('-v', '--verbose',  action="store_true",
                              help='Outputs verbose status messages')
     args_parser.add_argument('--limit', '-l', action="store",
                              type=int,
-                             help='Limit news topics if this parameter provided')
-    args_parser.add_argument('--short', action="store_true", help='???? shor_ver>?')
-    args_parser.add_argument('--date', '-d', action="store", help='??????')
+                             help='Limit news number if this parameter provided')
+    args_parser.add_argument('--date', '-d', action="store",
+                             help='Print all feeds from cache from appropriate date and appropriate source')
 
     cl_args = args_parser.parse_args()
 
@@ -71,46 +49,44 @@ def main():
     log.addHandler(fh)
 
     if cl_args.verbose:
-        # create console handler with a higher log level
         ch = logging.StreamHandler()
         ch.setLevel(logging.INFO)
         ch.setFormatter(formatter)
         log.addHandler(ch)
 
-    log.info(u'Program started')
+    log.info('Program started')
 
     with open('version.txt', 'r+') as ver_file:
         prev_version = ver_file.readline()
         try:
             main_version, sub_version = prev_version.split('.')
         except ValueError:
-            logging.error(u'Error during parsing version.txt. ValueError in spliting version data.')
+            logging.error('Error during parsing version.txt. ValueError in spliting version data.')
             print("Version Error. Wrong Data in version.txt. Version has not been changed")
         new_version = main_version + '.' + str(int(sub_version) + 1)
         ver_file.seek(0)
         ver_file.write(new_version)
         if cl_args.version:
             print('Current version of program: ', prev_version)
-            log.info(u'Program ended after Show Version mode')
+            log.info('Program ended after Show Version mode')
             return
 
     if cl_args.date:
         display_cache(cl_args.url, cl_args.date)
+        log.info('Program ended after Show Cache mode')
         return
 
-    #args = vars(args_parser.parse_args())
-    #feed = RSSParser(**args)
     feed = Feed(cl_args.url, cl_args.limit)
-    feed.print()
-    feed.caching()
-    """
-    if cl_args.verbose:
-        with open('logs.log', 'r') as logs_file:
-            for line in logs_file.readlines():
-                print(line, end='')
-    """
+    log.info('Feed object created')
+    if cl_args.json:
+        feed.print_json()
+        log.info('Feed object printed as JSON')
+    else:
+        feed.print()
+        log.info('Feed object printed')
 
-    log.info(u'Program ended')
+    feed.caching()
+    log.info('Program ended')
 
 
 if __name__ == '__main__':
