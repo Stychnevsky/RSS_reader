@@ -21,7 +21,7 @@ def display_cache(url_to_show, date_to_show):
                 print(json.loads(feed_json))
 
 
-def main():
+def rss_reader():
     args_parser = argparse.ArgumentParser(prog='Stychnevsky RSS Reader',
                                           description='Reader to parse RSS and output news',
                                           epilog='RSS Reader 2019')
@@ -87,8 +87,4 @@ def main():
 
     feed.caching()
     log.info('Program ended')
-
-
-if __name__ == '__main__':
-    main()
 
