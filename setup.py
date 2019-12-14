@@ -10,7 +10,7 @@ setup(
     url='https://github.com/Stychnevsky/RSS_reader',
     packages=find_packages(),
     entry_points={
-        'console_scripts': ['rss-reader=rss_reader.command_line: main'],
+        'console_scripts': ['rss-reader=RSS_reader.command_line: main'],
     },
     python_requires='>=3.7',
     install_requires=[
