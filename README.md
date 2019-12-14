@@ -13,19 +13,28 @@ They will be installed automaticly using "install_requires" argument in setup.py
 ## Package instalation
 1) Clone this repository (https://github.com/Stychnevsky/RSS_reader/) for your computer
 
-2) change folder to RSS_reader:<br/>
+2) Please install wheel and setuptools if you dont have it:<br/>
+    pip install wheel<br/>
+    pip install setuptools
+
+3) change folder to RSS_reader:<br/>
     cd RSS_reader
     
-3) setup package:<br/>
-    python setup.py sdist
+4) setup package:<br/>
+    python setup.py bdist_wheel
     
-4) dist packeg will be created:<br/>
+5) dist package will be created:<br/>
     cd dist
     
-5) install package using pip:<br/>
+6) install package using pip:<br/>
     pip install rss_reader-1.0.tar.gz
+    
+7) Go to rss_reader folder:<br/>
+    cd ..<br/>
+    cd RSS_reader
 
-Soo, know you install RSS_parser!
+8) Soo, now you can use RSS_parser!<br/>
+    python3 rss_reader.py https://news.yahoo.com/rss/<br/>
 
 ## Program improvment
 Now you see 1.0 program version. In is ready-to-work, but, to tell the truth, no so good as it can be.<br/>
@@ -79,7 +88,7 @@ JSON structure (1 JSON = 1 Feed, not Feeds list):<br/>
 rss_reader.py https://onliner.by/feed --json -l 5<br/>
 Print 5 latest news from onliner.by i json format<br/>
 
-rss_reader.py 'https://news.yahoo.com/rss/' -v <br/>
+rss_reader.py https://news.yahoo.com/rss/ -v <br/>
 Print all news from yahoo and output verbosr status messages<br/>
 
 rss_reader.py --date 20191210 <br/>
