@@ -13,7 +13,7 @@ setup(
     },
     packages=find_packages(where='RSS_reader'),
     entry_points={
-        'console_scripts': ['rss-reader=command_line: main'],
+        'console_scripts': ['rss-reader=RSS_reader.command_line: main'],
     },
     python_requires='>=3.7',
     install_requires=[
