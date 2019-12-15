@@ -8,18 +8,15 @@ setup(
     author='Anton Stychnesky',
     author_email='stychnevsky@gmail.com',
     url='https://github.com/Stychnevsky/RSS_reader',
-    package_dir={
-        '': 'RSS_reader',
-    },
-    packages=find_packages(where='RSS_reader'),
+    packages=find_packages(where='rss_reader'),
     entry_points={
-        'console_scripts': ['rss-reader=RSS_reader.command_line: main'],
+        'console_scripts': ['rss-reader=rss_reader.command_line: main'],
     },
     python_requires='>=3.7',
     install_requires=[
         'feedparser',
         'bs4',
     ],
-    long_description="RSS_reader",
+    long_description="Rss reader",
     include_package_data=True
 )
