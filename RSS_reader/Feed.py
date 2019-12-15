@@ -1,6 +1,6 @@
 import feedparser
-from FeedTitle import FeedTitle
-from Entry import Entry
+from RSS_reader.FeedTitle import FeedTitle
+from RSS_reader.Entry import Entry
 import json
 import datetime
 
