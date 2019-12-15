@@ -3,6 +3,7 @@ from rss_reader.FeedTitle import FeedTitle
 from rss_reader.Entry import Entry
 import json
 import datetime
+import os
 
 
 class Feed:
@@ -80,7 +81,7 @@ class Feed:
 
     def caching(self):
         """Write Feed to cache file (in JSON format). Cache file is list of Feed JSONs """
-        with open ('cache.txt', 'a') as cache_file:
+        with open(os.path.join(os.getcwd(), 'rss_reader/cache.txt'), 'a') as cache_file:
             cache_file.write(json.dumps(self.json_data) + '\n')
 
 

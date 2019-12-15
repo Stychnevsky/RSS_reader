@@ -3,6 +3,7 @@ import logging
 import json
 import time
 from rss_reader.Feed import Feed
+import os
 
 
 def display_cache(url_to_show, date_to_show):
@@ -11,7 +12,7 @@ def display_cache(url_to_show, date_to_show):
     except ValueError:
         logging.error('Date format Error! Please input data in yyyymmdd format!')
         raise ValueError('Wrong date type')
-    with open('cache.txt') as cache_file:
+    with open(os.path.join(os.getcwd(), 'rss_reader/cache.txt')) as cache_file:
         for line in cache_file:
             feed_json = json.loads(line)
             feed_access_date = time.strptime(feed_json['access_time'], '%Y-%m-%d %H:%M:%S.%f')
@@ -42,8 +43,7 @@ def rss_reader():
     log = logging.getLogger('main_logger')
     log.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-    fh = logging.FileHandler('logs.log')
+    fh = logging.FileHandler(os.path.join(os.getcwd(), 'rss_reader/logs.log'))
     fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
     log.addHandler(fh)
@@ -55,8 +55,7 @@ def rss_reader():
         log.addHandler(ch)
 
     log.info('Program started')
-
-    with open('version.txt', 'r+') as ver_file:
+    with open(os.path.join(os.getcwd(), 'rss_reader/version.txt'), 'r+') as ver_file:
         prev_version = ver_file.readline()
         try:
             main_version, sub_version = prev_version.split('.')
