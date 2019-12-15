@@ -43,7 +43,7 @@ def rss_reader():
     log = logging.getLogger('main_logger')
     log.setLevel(logging.INFO)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-    fh = logging.FileHandler(os.path.join(os.getcwd(), 'rss_reader/logs.log'))
+    fh = logging.FileHandler('rss_reader/logs.log')
     fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
     log.addHandler(fh)
