@@ -2,7 +2,7 @@ import argparse
 import logging
 import json
 import time
-from Feed import Feed
+from rss_reader.Feed import Feed
 
 
 def display_cache(url_to_show, date_to_show):
