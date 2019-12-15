@@ -8,6 +8,9 @@ setup(
     author='Anton Stychnesky',
     author_email='stychnevsky@gmail.com',
     url='https://github.com/Stychnevsky/RSS_reader',
+    package_dir={
+        '': 'RSS_reader',
+    },
     packages=find_packages(where='RSS_reader'),
     entry_points={
         'console_scripts': ['rss-reader=command_line: main'],
