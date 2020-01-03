@@ -91,13 +91,9 @@ def setup_logger():
     global formatter
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-    curr_dir = os.getcwd()
-    try:
-        fh = logging.FileHandler(curr_dir + '/logs.log')
-        print('1111')
-    except FileNotFoundError:
-        fh = logging.FileHandler('logs.log')
-        print('2222')
+    curr_dir = os.path.dirname(os.path.realpath(__file__))
+    fh = logging.FileHandler(curr_dir + '/logs.log')
+
     fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
     log.addHandler(fh)
