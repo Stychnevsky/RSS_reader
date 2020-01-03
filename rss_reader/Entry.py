@@ -19,7 +19,9 @@ class Entry:
         img_tag = re.compile('<img.*?>')
         for number_of_img in range(len(images)):
             img_title = self.img_titles[number_of_img]
-            desc = re.sub(img_tag, ' [image ' + str(number_of_img + 1) + ': ' + img_title + '] ', desc, count=1)
+            if img_title:
+                img_title = ': ' + img_title
+            desc = re.sub(img_tag, ' [image ' + str(number_of_img + 1) + img_title + '] ', desc, count=1)
         self.description = BeautifulSoup(desc, 'html.parser').get_text()
 
     def output(self):

@@ -1,5 +1,5 @@
-from rss_reader import rss_reader
+from rss_reader import main
 
 
 def main():
-    rss_reader.rss_reader()
+    main.read_rss()
