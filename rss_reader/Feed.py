@@ -90,9 +90,8 @@ class Feed:
 
     def caching(self):
         """Write Feed to cache file (in JSON format). Cache file is list of Feed JSONs """
-        #with open('RSS_reader/rss_reader/cache.txt', 'a') as cache_file:
         current_dir = os.getcwd()
-        with open(current_dir + '/rss_reader/cache.txt', 'a') as cache_file:
+        with open(current_dir + '/cache.txt', 'a') as cache_file:
             cache_file.write(json.dumps(self.json_data) + '\n')
 
     def create_epub(self, path):

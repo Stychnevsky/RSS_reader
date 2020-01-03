@@ -90,11 +90,13 @@ def setup_logger():
     log.setLevel(logging.INFO)
     global formatter
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    curr_dir = os.getcwd()
     try:
-        fh = logging.FileHandler('RSS_reader/rss_reader/logs.log')
+        fh = logging.FileHandler(curr_dir + '/logs.log')
         print('1111')
     except FileNotFoundError:
-        fh = logging.FileHandler('rss_reader/logs.log')
+        fh = logging.FileHandler(curr_dir + 'rss_reader/logs.log')
         print('2222')
     fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
@@ -115,7 +117,7 @@ def read_rss():
     log.info('Program started')
 
     curr_dir = os.getcwd()
-    with open('rss_reader/version.txt', 'r+') as ver_file:
+    with open(curr_dir + '/version.txt', 'r+') as ver_file:
         prev_version = ver_file.readline()
         try:
             main_version, sub_version = prev_version.split('.')
