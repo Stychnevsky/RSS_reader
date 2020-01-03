@@ -1,5 +1,5 @@
 import unittest
-from rss_reader.main import parse_arguments
+from rss_reader.reader import parse_arguments
 
 
 class TestArgparse(unittest.TestCase):
