@@ -22,7 +22,6 @@ def check_if_url_valid(url):
         logging.error('ServerNotFoundError')
         raise exceptions.ServerNotFoundError("Not valid server. Please, check site address")
     else:
-        print(resp[0]['status'])
         if int(resp[0]['status']) > 400:
             logging.error('PageDoesNotExistError')
             raise exceptions.PageDoesNotExistError("Page does not exist. Please, check URL")
@@ -30,6 +29,7 @@ def check_if_url_valid(url):
             logging.error('FeedNotFoundError')
             raise exceptions.FeedNotFoundError('There is not such page on this server Please check URL')
         return True
+
 
 def check_internet_connection():
     check_host = 'http://google.com'
@@ -47,7 +47,8 @@ def display_cache(url_to_show, date_to_show):
     except ValueError:
         logging.error('InvalidDateError')
         raise exceptions.InvalidDateError('Wrong date. Please input data in yyyymmdd format!')
-    with open('rss_reader/cache.txt') as cache_file:
+    curr_dir = os.path.dirname(os.path.realpath(__file__))
+    with open(curr_dir + '/cache.txt') as cache_file:
         for line in cache_file:
             feed_json = json.loads(line)
             feed_access_date = time.strptime(feed_json['access_time'], '%Y-%m-%d %H:%M:%S.%f')
@@ -55,6 +56,7 @@ def display_cache(url_to_show, date_to_show):
             if feed_access_date > date_to_show and (not url_to_show or url == url_to_show):
                 feed_json = json.dumps(feed_json, indent=2)
                 print(json.loads(feed_json))
+
 
 def parse_arguments(arguments):
     args_parser = argparse.ArgumentParser(prog='Stychnevsky RSS Reader',
