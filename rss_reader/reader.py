@@ -116,8 +116,8 @@ def read_rss():
 
     log.info('Program started')
 
-    curr_dir = os.getcwd()
-    with open('version.txt', 'r+') as ver_file:
+    curr_dir = os.path.dirname(os.path.realpath(__file__))
+    with open(curr_dir + '/version.txt', 'r+') as ver_file:
         prev_version = ver_file.readline()
         try:
             main_version, sub_version = prev_version.split('.')
