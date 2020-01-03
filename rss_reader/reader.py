@@ -96,7 +96,7 @@ def setup_logger():
         fh = logging.FileHandler(curr_dir + '/logs.log')
         print('1111')
     except FileNotFoundError:
-        fh = logging.FileHandler(curr_dir + 'rss_reader/logs.log')
+        fh = logging.FileHandler('logs.log')
         print('2222')
     fh.setLevel(logging.INFO)
     fh.setFormatter(formatter)
@@ -117,7 +117,7 @@ def read_rss():
     log.info('Program started')
 
     curr_dir = os.getcwd()
-    with open(curr_dir + '/version.txt', 'r+') as ver_file:
+    with open('version.txt', 'r+') as ver_file:
         prev_version = ver_file.readline()
         try:
             main_version, sub_version = prev_version.split('.')
