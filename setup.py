@@ -16,6 +16,8 @@ setup(
     install_requires=[
         'feedparser',
         'bs4',
+        'httplib2',
+        'requests'
     ],
     long_description="Rss reader",
     include_package_data=True

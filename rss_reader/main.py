@@ -4,10 +4,10 @@ import json
 import time
 try:
     from rss_reader.Feed import Feed
+    import rss_reader.exceptions as exceptions
 except ModuleNotFoundError:
     from Feed import Feed
-
-import exceptions
+    import exceptions
 import httplib2
 import urllib
 import sys
