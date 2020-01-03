@@ -11,36 +11,21 @@ They will be installed automaticly using "install_requires" argument in setup.py
 
 
 ## Package instalation
-1) Clone this repository (https://github.com/Stychnevsky/RSS_reader/) for your computer
 
-2) Please install wheel and setuptools if you dont have it:<br/>
+1) Please install wheel and setuptools if you dont have it:<br/>
     pip install wheel<br/>
     pip install setuptools
 
-3) change folder to RSS_reader:<br/>
-    cd RSS_reader
+2) Install RSS reader:<br/>
+    pip install git+https://github.com/Stychnevsky/RSS_reader
     
-4) setup package:<br/>
-    python setup.py bdist_wheel
-    
-5) dist package will be created:<br/>
-    cd dist
-    
-6) install package using pip:<br/>
-    pip install rss_reader-1.0.tar.gz
-    
-7) Go to rss_reader folder:<br/>
-    cd ..<br/>
-    cd RSS_reader
-
-8) Soo, now you can use RSS_parser!<br/>
-    python3 rss_reader.py https://news.yahoo.com/rss/<br/>
+3) Now you can use CLI ("rss-parser" command)<br/>
+    rss-reader https://news.yahoo.com/rss/ #example<br/>
 
 ## Program improvment
-Now you see 1.0 program version. In is ready-to-work, but, to tell the truth, no so good as it can be.<br/>
-So, we want to anounce 2.0 version realise. It is expected on Decemver 15 or 16. It will inculde testing, many little improvments and, probably, ability to create fb2 document.
-Hope you will give us a chance just to show it...
-
+Now you see 2.0 utility version. It is better than the 1.0, but published later than the deadline on EPAM courses.
+If you want to see 1.0 version, please look at this commit: 
+https://github.com/Stychnevsky/RSS_reader/tree/c19590afb8584e612f9c96f7f5d3673d8285afb9
 
 ## Usage 
 Usage: rss_reader.py [-h] [--version] [--json] [-v][--verbose] [-l][--limit LIMIT] [-d][--date]<br/>
