@@ -1,7 +1,9 @@
 import datetime
 import os
 import requests
+from rss_reader import exceptions
 import zipfile
+
 
 
 def create_html_for_epub(entry, file_name, entry_num=1, entries_count=1):
@@ -123,8 +125,11 @@ def generate_html(feed, path, file_name=None):
     try:
         os.chdir(path)
     except Exception:
-        print('Can not change direction to path. Files will be saved into RSS-reader directory')
-    file = open(file_name, "w", encoding="utf8")
+        raise exceptions.InvalidPathError('This path do not exist. Files will be saved into RSS-reader directory')
+    try:
+        file = open(file_name, "w", encoding="utf8")
+    except PermissionError:
+        raise exceptions.InvalidFolderToSaveError('You have no rights to add files in this folder')
     file.write('<h1 align="center">News digest - ' + today.strftime('%b-%d %H:%M') + '<br /></h1>')
     for entry in feed.entries:
         file.write(requests.get(entry.link).text)

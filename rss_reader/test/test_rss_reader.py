@@ -1,7 +1,8 @@
-import unittest
+from rss_reader import exceptions
 import os
 from rss_reader.Feed import Feed
-
+import rss_reader.reader as reader
+import unittest
 
 class TestFeedClass(unittest.TestCase):
     def setUp(self):
@@ -127,3 +128,15 @@ class TestFeedClass(unittest.TestCase):
     def test_no_entries_in_the_feed(self):
         feed = Feed('http://www.onliner.by', limit=None)
         self.assertTrue(feed.no_entries_in_feed)
+
+    def test_check_if_url_func_not_absolute(self):
+        self.assertRaises(exceptions.NotAbsoluteURIError, reader.check_if_url_valid, 'some_strange_site.ru')
+
+    def test_check_if_url_func_server_not_found(self):
+        self.assertRaises(exceptions.ServerNotFoundError, reader.check_if_url_valid, 'https://some_strange_site.ru')
+
+    def test_check_if_url_func_page_not_exist(self):
+        self.assertRaises(exceptions.PageDoesNotExistError, reader.check_if_url_valid, 'https://lenta.ru/some-rubbish')
+
+    def test_invalid_date_error(self):
+        self.assertRaises(exceptions.InvalidDateError, reader.display_cache, 'https://lenta.ru/', '2019-12-10')

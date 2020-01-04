@@ -14,6 +14,10 @@ def check_if_url_valid(url):
     h = httplib2.Http()
     try:
         resp = h.request(url, 'HEAD')
+    except httplib2.RelativeURIError:
+        logging.error('NotAbsoluteURIError')
+        raise exceptions.NotAbsoluteURIError('Please, enter absolute url. '
+                                             'Usually you just need to add https:// to function')
     except httplib2.ServerNotFoundError:
         logging.error('ServerNotFoundError')
         raise exceptions.ServerNotFoundError("Not valid server. Please, check site address")
@@ -100,6 +104,11 @@ def setup_logger():
 def read_rss():
     cl_args = parse_arguments(sys.argv[1:])
     setup_logger()
+
+    if not cl_args.url and not cl_args.date and not cl_args.version:
+        logging.info('NoUrlOrDataArgsError')
+        raise exceptions.NoUrlOrDataArgsError('Please, put url or one of data-releted args (date, version) to '
+                                              'arguments. Use -h to show help ')
 
     if cl_args.verbose:
         ch = logging.StreamHandler()
