@@ -6,13 +6,17 @@ class TestArgparse(unittest.TestCase):
     """test argparse functions"""
     def test_arg_parse(self):
         parser = parse_arguments(['some_url', '--limit', '5', '--json', '--verbose', '--version',
-                                  '--date', '20191210'])
+                                  '--date', '20191210', '--output-path', 'some_path', '--to-epub', '--to-html'])
         self.assertEqual(parser.url, 'some_url')
         self.assertTrue(parser.limit == 5)
         self.assertTrue(parser.json)
         self.assertTrue(parser.verbose)
         self.assertTrue(parser.version)
-        self.assertTrue(parser.date == '20191210')
+        self.assertEqual(parser.date, '20191210')
+        self.assertEqual(parser.output_path, 'some_path')
+        self.assertTrue(parser.to_epub)
+        self.assertTrue(parser.to_html)
+
 
     def test_empty_arg_parse(self):
         parser = parse_arguments(['some_url'])
@@ -22,4 +26,6 @@ class TestArgparse(unittest.TestCase):
         self.assertFalse(parser.verbose)
         self.assertFalse(parser.version)
         self.assertFalse(parser.date)
+        self.assertFalse(parser.to_epub)
+        self.assertFalse(parser.to_html)
 

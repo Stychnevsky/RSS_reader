@@ -116,8 +116,10 @@ def generate_epub(feed, path, file_name=None):
 def generate_html(feed, path, file_name=None):
     today = datetime.datetime.now()
     if not file_name:
-        file_name = feed.feed_title.title + ' ' + today.strftime("%b-%d-%Y") + '.html'
-        file_name = "".join([symb for symb in file_name if symb.isalpha() or symb.isdigit() or symb == ' ']).rstrip()
+        title = feed.feed_title.title
+        title = "".join([symb for symb in title if symb.isalpha() or symb.isdigit() or symb == ' ']).rstrip()
+        file_name = title + ' ' + today.strftime("%b-%d-%Y") + '.html'
+
 
     project_dir = os.getcwd()
     try:
