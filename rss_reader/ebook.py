@@ -1,7 +1,7 @@
-import requests
-import os
-import zipfile
 import datetime
+import os
+import requests
+import zipfile
 
 
 def create_html_for_epub(entry, file_name, entry_num=1, entries_count=1):
@@ -14,7 +14,7 @@ def create_html_for_epub(entry, file_name, entry_num=1, entries_count=1):
     file.write("\n<strong>" + entry.title + "</strong>" + "\n<p>")
     file.write(entry.description)
     file.write("<br /><br /><i>Дата публикации: " + entry.published)
-    file.write("<br />Новость " + str(entry_num) + "/" + str(entries_count)+"</i>")
+    file.write("<br />Новость " + str(entry_num) + "/" + str(entries_count) + "</i>")
     file.write("</p>")
     file.write("\n</body>")
     file.write("\n</html>")
@@ -67,8 +67,7 @@ def generate_epub(feed, path, file_name=None):
     metadata = '''<dc:title xmlns:dc="http://purl.org/dc/elements/1.1/">%(novelname)s</dc:title>
      <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:ns0="http://www.idpf.org/2007/opf" ns0:role="aut" ns0:file-as="NaN">%(author)s</dc:creator>
        <meta xmlns:dc="http://purl.org/dc/elements/1.1/" name="calibre:series" content="%(series)s"/>''' \
-               % {
-                   "novelname": info['NovelName'], "author": info['author'], "series": info['NovelName']}
+               % {"novelname": info['NovelName'], "author": info['author'], "series": info['NovelName']}
 
     toc_manifest = '<item href="toc.xhtml" id="toc" properties="nav" media-type="application/xhtml+xml"/>'
 
@@ -119,7 +118,6 @@ def generate_html(feed, path, file_name=None):
         title = feed.feed_title.title
         title = "".join([symb for symb in title if symb.isalpha() or symb.isdigit() or symb == ' ']).rstrip()
         file_name = title + ' ' + today.strftime("%b-%d-%Y") + '.html'
-
 
     project_dir = os.getcwd()
     try:

@@ -1,13 +1,13 @@
 import argparse
-import logging
+import httplib2
 import json
-import time
+import logging
+import os
 from rss_reader.Feed import Feed
 from rss_reader import exceptions
-import httplib2
-import urllib
 import sys
-import os
+import time
+import urllib
 
 
 def check_if_url_valid(url):
@@ -63,7 +63,7 @@ def parse_arguments(arguments):
     args_parser.add_argument('--version', action="store_true", help='Print version info and exit program. '
                                                                     'Version changed after every program launch')
     args_parser.add_argument('--json', action="store_true", help='Print result as JSON')
-    args_parser.add_argument('-v', '--verbose',  action="store_true",
+    args_parser.add_argument('-v', '--verbose', action="store_true",
                              help='Outputs verbose status messages')
     args_parser.add_argument('--limit', '-l', action="store",
                              type=int,

@@ -1,5 +1,5 @@
-import unittest
 from rss_reader.reader import parse_arguments
+import unittest
 
 
 class TestArgparse(unittest.TestCase):
@@ -17,7 +17,6 @@ class TestArgparse(unittest.TestCase):
         self.assertTrue(parser.to_epub)
         self.assertTrue(parser.to_html)
 
-
     def test_empty_arg_parse(self):
         parser = parse_arguments(['some_url'])
         self.assertEqual(parser.url, 'some_url')
@@ -28,4 +27,3 @@ class TestArgparse(unittest.TestCase):
         self.assertFalse(parser.date)
         self.assertFalse(parser.to_epub)
         self.assertFalse(parser.to_html)
-

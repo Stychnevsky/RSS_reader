@@ -17,5 +17,3 @@ class FeedTitle:
             output_list.append('Обновлено: ' + self.published)
         return output_list
 
-
-

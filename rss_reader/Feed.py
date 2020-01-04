@@ -1,14 +1,15 @@
-import feedparser
-from rss_reader.FeedTitle import FeedTitle
-from rss_reader.Entry import Entry
-import rss_reader.ebook as ebook
-import json
 import datetime
+import feedparser
+import json
+import rss_reader.ebook as ebook
 import os
+from rss_reader.Entry import Entry
+from rss_reader.FeedTitle import FeedTitle
 
 
 class Feed:
     """Class of one RSS feed
+
     Feed consist of two blocs: FeedTitle (title, link and access date) and Entries. Entries is list of objects "Entry"
     class.
     Class include those functions:
@@ -55,6 +56,7 @@ class Feed:
 
     def print_json(self):
         """Print Feed (Title end Entries) in json format
+
          JSON structure:
         {
             'access_time': 01.01.1900 00:00:00,

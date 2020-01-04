@@ -1,11 +1,13 @@
-import html
 from bs4 import BeautifulSoup
+import html
 import re
 
 
 class Entry:
-    """ Entry is object of peace of news. It consist of some metadata, description and links for images, wich was
-    founded in description. """
+    """Entry is object of peace of news.
+
+    It consist of some metadata, description and links for images, wich was founded in description.
+    """
     def __init__(self, entry):
         self.title = html.unescape(entry.get('title', ''))
         self.link = entry.get('link', '')
@@ -25,7 +27,7 @@ class Entry:
         self.description = BeautifulSoup(desc, 'html.parser').get_text()
 
     def output(self):
-        """ Function takes data from Entry and prepare it to printing. Output list is list of all Entry variables"""
+        """Function takes data from Entry and prepare it to printing. Output list is list of all Entry variables"""
         output_list = []
         if self.title:
             output_list.append(self.title)
@@ -41,7 +43,7 @@ class Entry:
         return output_list
 
     def output_to_json(self):
-        """ Function which take data from Entry and prepare it to put in Feed JSON."""
+        """Function which take data from Entry and prepare it to put in Feed JSON."""
         data = {
             'title': self.title,
             'link': self.link,
