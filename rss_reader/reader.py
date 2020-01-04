@@ -2,12 +2,8 @@ import argparse
 import logging
 import json
 import time
-try:
-    from rss_reader.Feed import Feed
-    import rss_reader.exceptions as exceptions
-except ModuleNotFoundError:
-    from Feed import Feed
-    import exceptions
+from Feed import Feed
+import exceptions
 import httplib2
 import urllib
 import sys
@@ -61,7 +57,7 @@ def display_cache(url_to_show, date_to_show):
 def parse_arguments(arguments):
     args_parser = argparse.ArgumentParser(prog='Stychnevsky RSS Reader',
                                           description='Reader to parse RSS and output news',
-                                          epilog='RSS Reader 2019')
+                                          epilog='RSS Reader 2020')
 
     args_parser.add_argument('url', nargs='?', action="store", help='url-address of feed to parse')
     args_parser.add_argument('--version', action="store_true", help='Print version info and exit program. '

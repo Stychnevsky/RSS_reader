@@ -1,12 +1,7 @@
 import feedparser
-try:
-    from rss_reader.FeedTitle import FeedTitle  #эта вещь вызывает вызов рсс_ридер.пай! возможно  поменяй местаи т что в трай  и эксепт
-    from rss_reader.Entry import Entry
-    import rss_reader.ebook as ebook
-except ModuleNotFoundError:
-    from FeedTitle import FeedTitle
-    from Entry import Entry
-    import ebook as ebook
+from FeedTitle import FeedTitle
+from Entry import Entry
+import ebook as ebook
 import json
 import datetime
 import os
@@ -99,5 +94,5 @@ class Feed:
         ebook.generate_epub(self, path)
 
     def create_html(self, path):
-        ebook.generate_html(self, path)
         """Create html file """
+        ebook.generate_html(self, path)

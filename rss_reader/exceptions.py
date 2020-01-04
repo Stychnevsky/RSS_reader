@@ -11,7 +11,7 @@ class FeedNotFoundError(Exception):
 
 
 class InvalidDateError(Exception):
-    pass
+    """Raised when --date argument input with invalid date"""
 
 
 class NoInternetConnectionError(Exception):
