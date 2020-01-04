@@ -1,7 +1,7 @@
 import feedparser
-from FeedTitle import FeedTitle
-from Entry import Entry
-import ebook as ebook
+from rss_reader.FeedTitle import FeedTitle
+from rss_reader.Entry import Entry
+import rss_reader.ebook as ebook
 import json
 import datetime
 import os

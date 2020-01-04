@@ -2,8 +2,8 @@ import argparse
 import logging
 import json
 import time
-from Feed import Feed
-import exceptions
+from rss_reader.Feed import Feed
+from rss_reader import exceptions
 import httplib2
 import urllib
 import sys
